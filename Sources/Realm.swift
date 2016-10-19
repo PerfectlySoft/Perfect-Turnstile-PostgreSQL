@@ -7,7 +7,7 @@
 //
 
 import Turnstile
-import PostgresSTORM
+import PostgresStORM
 import TurnstileCrypto
 
 class AuthRealm : Realm {

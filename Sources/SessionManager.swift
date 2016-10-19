@@ -9,7 +9,7 @@
 import Foundation
 import TurnstileCrypto
 import Turnstile
-import PostgresSTORM
+import PostgresStORM
 
 /**
 SQLiteSessionManager manages sessions via SQLite storage

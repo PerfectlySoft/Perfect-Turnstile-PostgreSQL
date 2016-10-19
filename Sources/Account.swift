@@ -8,7 +8,7 @@
 
 import Turnstile
 import TurnstileCrypto
-import PostgresSTORM
+import PostgresStORM
 import StORM
 
 open class AuthAccount : PostgresStORM, Account {

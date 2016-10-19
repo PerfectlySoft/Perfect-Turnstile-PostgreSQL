@@ -6,7 +6,7 @@
 //
 //
 
-import PostgresSTORM
+import PostgresStORM
 import StORM
 import Foundation
 import SwiftRandom
