@@ -78,7 +78,7 @@ open class AuthAccount : PostgresStORM, Account {
 	func get(_ un: String, _ pw: String) throws -> AuthAccount {
 		let cursor = StORMCursor(limit: 1, offset: 0)
 		do {
-			try select(whereclause: "username = :1", params: [un], orderby: [], cursor: cursor)
+			try select(whereclause: "username = $1", params: [un], orderby: [], cursor: cursor)
 			to(self.results.rows[0])
 
 			let _ = try BCrypt.verify(password: pw, matchesHash: password)
@@ -90,7 +90,7 @@ open class AuthAccount : PostgresStORM, Account {
 	}
 	func exists(_ un: String) -> Bool {
 		do {
-			try select(whereclause: "username = :1", params: [un], orderby: [], cursor: StORMCursor(limit: 1, offset: 0))
+			try select(whereclause: "username = $1", params: [un], orderby: [], cursor: StORMCursor(limit: 1, offset: 0))
 			if results.rows.count == 1 {
 				return true
 			} else {
