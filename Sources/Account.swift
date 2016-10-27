@@ -81,7 +81,11 @@ open class AuthAccount : PostgresStORM, Account {
 			try select(whereclause: "username = $1", params: [un], orderby: [], cursor: cursor)
 			to(self.results.rows[0])
 
-			let _ = try BCrypt.verify(password: pw, matchesHash: password)
+			let verifyPw = try BCrypt.verify(password: pw, matchesHash: password)
+			if !verifyPw {
+				print("Invalid password for username: \(un)")
+				throw StORMError.noRecordFound
+			}
 			return self
 		} catch {
 			print(error)
