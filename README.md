@@ -57,7 +57,8 @@ In your Package.swift file, include the following line inside the dependancy arr
 
 If you receive a compile error that says the following, you need to install and link libxml2
 
-```note: you may be able to install libxml-2.0 using your system-packager:
+```
+note: you may be able to install libxml-2.0 using your system-packager:
 
     brew install libxml2
 
