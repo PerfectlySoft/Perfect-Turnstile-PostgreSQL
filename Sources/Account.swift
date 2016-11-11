@@ -80,13 +80,16 @@ open class AuthAccount : PostgresStORM, Account {
 		do {
 			try select(whereclause: "username = $1", params: [un], orderby: [], cursor: cursor)
 			to(self.results.rows[0])
-
-			let _ = try BCrypt.verify(password: pw, matchesHash: password)
-			return self
 		} catch {
 			print(error)
 			throw StORMError.noRecordFound
 		}
+		if try BCrypt.verify(password: pw, matchesHash: password) {
+			return self
+		} else {
+			throw StORMError.noRecordFound
+		}
+
 	}
 	func exists(_ un: String) -> Bool {
 		do {
