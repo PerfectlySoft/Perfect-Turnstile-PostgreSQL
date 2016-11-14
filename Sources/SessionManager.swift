@@ -46,11 +46,16 @@ public class PerfectSessionManager: SessionManager {
 	*/
 	public func restoreAccount(fromSessionID identifier: String) throws -> Account {
 		let token = AccessTokenStore(connect!)
+//		print("*** CONNECT ***")
+//		print(connect?.credentials.host)
+//		print(connect?.server.status())
+//		print("*** /CONNECT ***")
 		do {
 			try token.get(identifier)
 			guard token.check()! else { throw InvalidSessionError() }
 			return SessionAccount(uniqueID: token.userid)
 		} catch {
+			print("Error... \(error)")
 			throw InvalidSessionError()
 		}
 	}
