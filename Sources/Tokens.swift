@@ -29,11 +29,11 @@ open class AccessTokenStore : PostgresStORM {
 
 	// Need to do this because of the nature of Swift's introspection
 	open override func to(_ this: StORMRow) {
-		token		= this.data["token"] as! String
-		userid		= (this.data["userid"] as! String)
-		created		= this.data["created"] as! Int
-		updated		= this.data["updated"] as! Int
-		idle		= this.data["idle"] as! Int
+		if let val = this.data["token"]		{ token		= val as! String }
+		if let val = this.data["userid"]	{ userid	= val as! String }
+		if let val = this.data["created"]	{ created	= val as! Int }
+		if let val = this.data["updated"]	{ updated	= val as! Int }
+		if let val = this.data["idle"]		{ idle		= val as! Int}
 
 	}
 
@@ -77,6 +77,7 @@ open class AccessTokenStore : PostgresStORM {
 	public func new(_ u: String) -> String {
 		let rand = URandom()
 		token = rand.secureToken
+		token = token.replacingOccurrences(of: "-", with: "a")
 		userid = u
 		created = now()
 		updated = now()
