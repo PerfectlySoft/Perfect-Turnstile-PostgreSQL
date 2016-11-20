@@ -46,7 +46,7 @@ open class AuthAccount : PostgresStORM, Account {
 		email		= (this.data["email"] as! String)
 	}
 
-	func rows() -> [AuthAccount] {
+	public func rows() -> [AuthAccount] {
 		var rows = [AuthAccount]()
 		for i in 0..<self.results.rows.count {
 			let row = AuthAccount()
