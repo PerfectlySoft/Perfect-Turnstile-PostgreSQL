@@ -36,14 +36,14 @@ open class AuthAccount : PostgresStORM, Account {
 
 	// Need to do this because of the nature of Swift's introspection
 	override open func to(_ this: StORMRow) {
-		uniqueID	= this.data["uniqueID"] as! String
-		username	= (this.data["username"] as! String)
-		password	= (this.data["password"] as! String) // lets not read the password!
-		facebookID	= (this.data["facebookID"] as! String)
-		googleID	= (this.data["googleID"] as! String)
-		firstname	= (this.data["firstname"] as! String)
-		lastname	= (this.data["lastname"] as! String)
-		email		= (this.data["email"] as! String)
+		uniqueID	= this.data["uniqueID"] as? String ?? ""
+		username	= this.data["username"] as? String ?? ""
+		password	= this.data["password"] as? String ?? ""
+		facebookID	= this.data["facebookID"] as? String ?? ""
+		googleID	= this.data["googleID"] as? String ?? ""
+		firstname	= this.data["firstname"] as? String ?? ""
+		lastname	= this.data["lastname"] as? String ?? ""
+		email		= this.data["email"] as? String ?? ""
 	}
 
 	public func rows() -> [AuthAccount] {
@@ -58,13 +58,13 @@ open class AuthAccount : PostgresStORM, Account {
 
 
 	// Create the table if needed
-	public func setup() {
-		do {
-			try sql("CREATE TABLE IF NOT EXISTS users (\"uniqueID\" varchar COLLATE \"default\",\"username\" varchar COLLATE \"default\", \"password\" varchar COLLATE \"default\", \"facebookID\" varchar COLLATE \"default\", \"googleID\" varchar COLLATE \"default\", \"firstname\" varchar COLLATE \"default\", \"lastname\" varchar COLLATE \"default\", \"email\" varchar COLLATE \"default\", CONSTRAINT \"users_key\" PRIMARY KEY (\"uniqueID\") NOT DEFERRABLE INITIALLY IMMEDIATE)", params: [])
-		} catch {
-			print(error)
-		}
-	}
+//	public func setup() {
+//		do {
+//			try sql("CREATE TABLE IF NOT EXISTS users (\"uniqueID\" varchar COLLATE \"default\",\"username\" varchar COLLATE \"default\", \"password\" varchar COLLATE \"default\", \"facebookID\" varchar COLLATE \"default\", \"googleID\" varchar COLLATE \"default\", \"firstname\" varchar COLLATE \"default\", \"lastname\" varchar COLLATE \"default\", \"email\" varchar COLLATE \"default\", CONSTRAINT \"users_key\" PRIMARY KEY (\"uniqueID\") NOT DEFERRABLE INITIALLY IMMEDIATE)", params: [])
+//		} catch {
+//			print(error)
+//		}
+//	}
 
 	func make() throws {
 //		print("IN MAKE")

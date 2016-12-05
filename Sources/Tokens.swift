@@ -47,13 +47,13 @@ open class AccessTokenStore : PostgresStORM {
 		return rows
 	}
 	// Create the table if needed
-	public func setup() {
-		do {
-			try sql("CREATE TABLE IF NOT EXISTS tokens (token varchar COLLATE \"default\", userid varchar COLLATE \"default\", created int, \"updated\" int, idle int, CONSTRAINT tokens_key PRIMARY KEY (token) NOT DEFERRABLE INITIALLY IMMEDIATE)", params: [])
-		} catch {
-			print(error)
-		}
-	}
+//	public func setup() {
+//		do {
+//			try sql("CREATE TABLE IF NOT EXISTS tokens (token varchar COLLATE \"default\", userid varchar COLLATE \"default\", created int, \"updated\" int, idle int, CONSTRAINT tokens_key PRIMARY KEY (token) NOT DEFERRABLE INITIALLY IMMEDIATE)", params: [])
+//		} catch {
+//			print(error)
+//		}
+//	}
 
 
 	private func now() -> Int {
