@@ -9,16 +9,11 @@
 import Turnstile
 import PostgresStORM
 import TurnstileCrypto
+import TurnstilePerfect
 
-class AuthRealm : Realm {
-	private var random: Random = URandom()
+extension AuthRealm {
 
-	public init() { }
-
-	func authenticate(credentials: Credentials) throws -> Account {
-
-
-//		print("======= ENTRY =======")
+	public func authenticate(credentials: Credentials) throws -> Account {
 
 		switch credentials {
 		case let credentials as UsernamePassword:
@@ -35,8 +30,7 @@ class AuthRealm : Realm {
 
 	}
 
-	private func authenticate(credentials: AccessToken) throws -> Account {
-//		print("======= AUTHENTICATE AccessToken =======")
+	public func authenticate(credentials: AccessToken) throws -> Account {
 		let account = AuthAccount()
 		let token = AccessTokenStore()
 		print(credentials.string)
@@ -53,8 +47,7 @@ class AuthRealm : Realm {
 	}
 
 
-	private func authenticate(credentials: UsernamePassword) throws -> Account {
-//		print("======= AUTHENTICATE =======")
+	public func authenticate(credentials: UsernamePassword) throws -> Account {
 		let account = AuthAccount()
 		do {
 			let thisAccount = try account.get(credentials.username, credentials.password)
@@ -84,8 +77,6 @@ class AuthRealm : Realm {
 	Registers PasswordCredentials against the AuthRealm.
 	*/
 	public func register(credentials: Credentials) throws -> Account {
-
-//		print("======= REGISTER =======")
 
 		let account = AuthAccount()
 		let newAccount = AuthAccount()

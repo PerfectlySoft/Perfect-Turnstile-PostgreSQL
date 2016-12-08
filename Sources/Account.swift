@@ -56,18 +56,7 @@ open class AuthAccount : PostgresStORM, Account {
 		return rows
 	}
 
-
-	// Create the table if needed
-//	public func setup() {
-//		do {
-//			try sql("CREATE TABLE IF NOT EXISTS users (\"uniqueID\" varchar COLLATE \"default\",\"username\" varchar COLLATE \"default\", \"password\" varchar COLLATE \"default\", \"facebookID\" varchar COLLATE \"default\", \"googleID\" varchar COLLATE \"default\", \"firstname\" varchar COLLATE \"default\", \"lastname\" varchar COLLATE \"default\", \"email\" varchar COLLATE \"default\", CONSTRAINT \"users_key\" PRIMARY KEY (\"uniqueID\") NOT DEFERRABLE INITIALLY IMMEDIATE)", params: [])
-//		} catch {
-//			print(error)
-//		}
-//	}
-
 	func make() throws {
-//		print("IN MAKE")
 		do {
 			password = BCrypt.hash(password: password)
 			try create() // can't use save as the id is populated

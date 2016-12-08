@@ -10,17 +10,10 @@ import Foundation
 import TurnstileCrypto
 import Turnstile
 import PostgresStORM
+import TurnstilePerfect
 
-/**
-SQLiteSessionManager manages sessions via SQLite storage
-*/
-public class PerfectSessionManager: SessionManager {
-	/// Dictionary of sessions
-	//private var sessions = [String: String]()
-	private let random: Random = URandom()
-
-	/// Initializes the Session Manager. No config needed!
-	public init() {}
+/// Extension to PerfectSessionManager - manages sessions via PostgresSQL
+extension PerfectSessionManager {
 
 	/// Creates a session for a given Subject object and returns the identifier.
 	public func createSession(account: Account) -> String {
@@ -37,19 +30,12 @@ public class PerfectSessionManager: SessionManager {
 		} catch {
 			print(error)
 		}
-		//sessions.removeValue(forKey: identifier)
 	}
 
-	/**
-	Creates a Session-backed Account object from the Session store. This only
-	contains the SessionID.
-	*/
+	/// Creates a Session-backed Account object from the Session store. This only contains the SessionID.
+
 	public func restoreAccount(fromSessionID identifier: String) throws -> Account {
 		let token = AccessTokenStore()
-//		print("*** CONNECT ***")
-//		print(connect?.credentials.host)
-//		print(connect?.server.status())
-//		print("*** /CONNECT ***")
 		do {
 			try token.get(identifier)
 			guard token.check()! else { throw InvalidSessionError() }
