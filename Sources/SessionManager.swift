@@ -12,7 +12,7 @@ import Turnstile
 import PostgresStORM
 import TurnstilePerfect
 
-/// Extension to PerfectSessionManager - manages sessions via PostgresSQL
+/// PerfectSessionManager manages sessions via PostgreSQL storage
 open class PerfectSessionManager: SessionManager {
 	public let random: Random = URandom()
 
@@ -34,7 +34,6 @@ open class PerfectSessionManager: SessionManager {
 	}
 
 	/// Creates a Session-backed Account object from the Session store. This only contains the SessionID.
-
 	public func restoreAccount(fromSessionID identifier: String) throws -> Account {
 		let token = AccessTokenStore()
 		do {
