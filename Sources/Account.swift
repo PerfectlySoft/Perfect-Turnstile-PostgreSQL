@@ -53,11 +53,11 @@ open class AuthAccount : PostgresStORM, Account {
 
 	/// Set incoming data from database to object
 	override open func to(_ this: StORMRow) {
-		uniqueID	= this.data["uniqueID"] as? String ?? ""
+		uniqueID	= this.data["uniqueid"] as? String ?? ""
 		username	= this.data["username"] as? String ?? ""
 		password	= this.data["password"] as? String ?? ""
-		facebookID	= this.data["facebookID"] as? String ?? ""
-		googleID	= this.data["googleID"] as? String ?? ""
+		facebookID	= this.data["facebookid"] as? String ?? ""
+		googleID	= this.data["googleid"] as? String ?? ""
 		firstname	= this.data["firstname"] as? String ?? ""
 		lastname	= this.data["lastname"] as? String ?? ""
 		email		= this.data["email"] as? String ?? ""
@@ -85,7 +85,7 @@ open class AuthAccount : PostgresStORM, Account {
 	}
 
 	/// Performs a find on supplied username, and matches hashed password
-	func get(_ un: String, _ pw: String) throws -> AuthAccount {
+	open func get(_ un: String, _ pw: String) throws -> AuthAccount {
 		let cursor = StORMCursor(limit: 1, offset: 0)
 		do {
 			try select(whereclause: "username = $1", params: [un], orderby: [], cursor: cursor)

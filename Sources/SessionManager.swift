@@ -16,6 +16,8 @@ import TurnstilePerfect
 open class PerfectSessionManager: SessionManager {
 	public let random: Random = URandom()
 
+	public init() {}
+
 	/// Creates a session for a given Subject object and returns the identifier.
 	public func createSession(account: Account) -> String {
 		let identifier = tokenStore?.new(account.uniqueID)

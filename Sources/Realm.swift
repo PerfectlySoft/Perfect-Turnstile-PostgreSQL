@@ -12,14 +12,14 @@ import TurnstileCrypto
 import TurnstilePerfect
 
 /// The "Turnstile Realm" that holds the main routing functionality for request filters
-public class AuthRealm : Realm {
+open class AuthRealm : Realm {
 	/// A container for the Random object fromTurnstile Crypto
 	public var random: Random = URandom()
 
 	public init() {}
 
 	/// Used when a "Credentials" onject is passed to the authenticate function. Returns an Account object.
-	public func authenticate(credentials: Credentials) throws -> Account {
+	open func authenticate(credentials: Credentials) throws -> Account {
 
 		switch credentials {
 		case let credentials as UsernamePassword:
@@ -37,7 +37,7 @@ public class AuthRealm : Realm {
 	}
 
 	/// Used when an "AccessToken" onject is passed to the authenticate function. Returns an Account object.
-	public func authenticate(credentials: AccessToken) throws -> Account {
+	open func authenticate(credentials: AccessToken) throws -> Account {
 		let account = AuthAccount()
 		let token = AccessTokenStore()
 		print(credentials.string)
@@ -55,7 +55,7 @@ public class AuthRealm : Realm {
 
 
 	/// Used when a "UsernamePassword" onject is passed to the authenticate function. Returns an Account object.
-	public func authenticate(credentials: UsernamePassword) throws -> Account {
+	open func authenticate(credentials: UsernamePassword) throws -> Account {
 		let account = AuthAccount()
 		do {
 			let thisAccount = try account.get(credentials.username, credentials.password)
@@ -82,7 +82,7 @@ public class AuthRealm : Realm {
 	//	}
 
 	/// Registers PasswordCredentials against the AuthRealm.
-	public func register(credentials: Credentials) throws -> Account {
+	open func register(credentials: Credentials) throws -> Account {
 
 		let account = AuthAccount()
 		let newAccount = AuthAccount()

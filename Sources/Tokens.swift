@@ -17,19 +17,19 @@ import Turnstile
 open class AccessTokenStore : PostgresStORM {
 
 	/// The token itself.
-	var token: String = ""
+	public var token: String = ""
 
 	/// The userid relates to the Users object UniqueID
-	var userid: String = ""
+	public var userid: String = ""
 
 	/// Integer relaing to the created date/time
-	var created: Int = 0
+	public var created: Int = 0
 
 	/// Integer relaing to the last updated date/time
-	var updated: Int = 0
+	public var updated: Int = 0
 
 	/// Idle period specified when token was created
-	var idle: Int = 86400 // 86400 seconds = 1 day
+	public var idle: Int = 86400 // 86400 seconds = 1 day
 
 	/// Table name used to store Tokens
 	override open func table() -> String {
