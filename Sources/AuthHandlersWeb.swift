@@ -46,7 +46,9 @@ public class AuthHandlersWeb {
 	/// Handles the POST request for a "login" route
 	open static func loginHandlerPOST(request: HTTPRequest, _ response: HTTPResponse) {
 		guard let username = request.param(name: "username"),
-			let password = request.param(name: "password") else {
+			let password = request.param(name: "password"),
+			!username.isEmpty,
+			!password.isEmpty else {
 				response.render(template: "login", context:  ["flash": "Missing username or password"])
 				return
 		}
@@ -76,7 +78,9 @@ public class AuthHandlersWeb {
 	/// Handles the POST request for a "register" route
 	open static func registerHandlerPOST(request: HTTPRequest, _ response: HTTPResponse) {
 		guard let username = request.param(name: "username"),
-			let password = request.param(name: "password") else {
+			let password = request.param(name: "password"),
+			!username.isEmpty,
+			!password.isEmpty else {
 				response.render(template: "register", context: ["flash": "Missing username or password"])
 				return
 		}
