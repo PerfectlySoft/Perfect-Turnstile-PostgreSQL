@@ -49,7 +49,7 @@ In your Package.swift file, include the following line inside the dependancy arr
 ``` swift
 .Package(
 	url: "https://github.com/PerfectlySoft/Perfect-Turnstile-PostgreSQL.git",
-	majorVersion: 0, minor: 0
+	majorVersion: 3
 	)
 ```
 
